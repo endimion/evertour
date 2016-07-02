@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  this is where we declare the Spring application context -->
+
+	<beans xmlns="http://www.springframework.org/schema/beans"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xmlns:mvc="http://www.springframework.org/schema/mvc"
+			xmlns:context="http://www.springframework.org/schema/context"
+			xmlns:tx="http://www.springframework.org/schema/tx"
+			xmlns:aop="http://www.springframework.org/schema/aop"
+			xmlns:jee="http://www.springframework.org/schema/jee"
+
+			xsi:schemaLocation="http://www.springframework.org/schema/mvc
+			http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+			http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+			http://www.springframework.org/schema/context 
+   			http://www.springframework.org/schema/context/spring-context-3.0.xsd
+   			http://www.springframework.org/schema/aop
+			http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+   			http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+			
+			<!--  mvc:resources sets up a handler for serving static content. The mapping attribute
+				  is set to /resources/** -->
+			<mvc:resources  mapping="/resources/**"
+							location="/resources/"/>
+
+			<!--  DispatcherServlet consults one or more handler mappings
+				in order to know which controller to dispatch a request to -->
+			<!--  if no bean defining a HandlerMappinsg is defined it uses the default
+				  which is a  DefaultAnnotationHandlerMapping and is what we use here-->
+			
+			<!--  this allows us to use annotations to declare mvc stuff -->	
+			<mvc:annotation-driven/>	
+			
+			
+			<!--  the following allows to use AspectJ annotations to proxy advise -->
+			<aop:aspectj-autoproxy />
+			
+			
+			
+			<!--  search the following packages for beans -->
+			<context:component-scan base-package="com.evertour.aspects" />
+			<context:component-scan base-package="com.evertour.controllers" />
+			<context:component-scan base-package="com.evertour.model" />
+			<context:component-scan base-package="com.evertour.model.DAOImpl" /> 
+			<context:component-scan base-package="com.evertour.services" />	
+		
+			<!--  this bean defines a view resolver, i.e. a bean that
+				  that maps a view name to a JSP. Spring provides many such
+				  resolvers. Here we will use InternalResourceViewResolver
+				  which searches for the jsp in the /web-inf/views/ directory
+			 -->
+			<!--  the property JstlView allows us to use jstl tags in the jsp file -->
+			<bean class=
+					"org.springframework.web.servlet.view.InternalResourceViewResolver">
+					<property name="viewClass"
+						value="org.springframework.web.servlet.view.JstlView" />
+					<property name="prefix" value="/WEB-INF/views/"/>
+					<property name="suffix" value=".jsp"/>
+			</bean>
+			
+			
+			
+<!--  ***********8DATABASE CONFIGURATION********************************** -->
+
+
+	<!-- this bean tells the application server tomcat in this case to look 
+		for a database called spring_test using the jdbc driver the connection details 
+		to the database are store in the servers server.xml file (in eclipse this 
+		is found under Servers/Tomcatv70..../ -->
+	<jee:jndi-lookup id="dataSource" jndi-name="/jdbc/Evertour"
+		resource-ref="true" />
+
+	<!-- this bean references the above one to create a pooled connection to 
+		the database. (Look up what pooled connections are) -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="com.evertour.model" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="dialect">org.hibernate.dialect.HSQLDialect</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- using the above sessionFactory bean we can create a transaction manager 
+		bean. This is required by the Hibernate framework I am assuming to allow 
+		for transaction control (grouping of commits, rollbacks etc.) -->
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager"
+		name="txManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- this declaration allows us to use Hibernate annotations for the DAO 
+		beans. The transaction manager defined above is required -->
+	<tx:annotation-driven transaction-manager="txManager" />
+
+			
+			
+			
+</beans>							
