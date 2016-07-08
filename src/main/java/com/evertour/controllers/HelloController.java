@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.evertour.services.TourCategoryService;
+import com.evertour.services.impl.TourCategoryService;
 
 @Controller
 public class HelloController {
@@ -24,7 +24,7 @@ public class HelloController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping({"/home","/"})
+	@RequestMapping("/home")
 	public String showTestMapPage(Map<String, Object> model){
 		
 		//add to the model, a list containing all the tour categories
@@ -32,6 +32,7 @@ public class HelloController {
 		model.put("tourCategories", tourCategoryService.getAllCategories());
 		return "touristMainMapView";
 	}
+	
 	
 	
 	

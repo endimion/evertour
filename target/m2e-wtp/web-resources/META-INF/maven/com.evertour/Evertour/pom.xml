@@ -7,30 +7,45 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Evertour Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+
+
+	<properties>
+		<java-version>1.7</java-version>
+		<org.springframework-version>4.1.6.RELEASE</org.springframework-version>
+	</properties>
+
 	<dependencies>
 		<!-- unit testing dependencies -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.5</version>
+			<version>4.9</version>
 		</dependency>
 
 		<!-- spring-context which provides core functionality -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>4.1.6.RELEASE</version>
+			<version>${org.springframework-version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${org.springframework-version}</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
 
 		<!-- The spring-webmvc module (also known as the Web-Servlet module) contains 
 			Spring’s model-view-controller (MVC) and REST Web Services implementation 
 			for web applications -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>4.1.6.RELEASE</version>
-		</dependency>
+
 
 		<!-- The spring-web module provides basic web-oriented integration features 
 			such as multipart file upload functionality and the initialization of the 
@@ -38,7 +53,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
-			<version>4.1.6.RELEASE</version>
+			<version>${org.springframework-version}</version>
 		</dependency>
 
 		<!-- this module allows you to autowire beans independant of springs annotations -->
@@ -50,7 +65,7 @@
 
 		<!-- jstl dependency -->
 		<dependency>
-			<groupId>javax.servlet</groupId>
+			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
@@ -80,7 +95,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aop</artifactId>
-			<version>4.1.6.RELEASE</version>
+			<version>${org.springframework-version}</version>
 		</dependency>
 
 		<dependency>
@@ -98,15 +113,39 @@
 		<!-- Hibernate dependencies for connecting to the database -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
-			<version>3.6.3.Final</version>
+			<artifactId>hibernate-core</artifactId>
+			<version>4.3.5.Final</version>
+		</dependency>
+
+
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>javax.servlet.jsp-api</artifactId>
+			<version>2.3.1</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-orm</artifactId>
-			<version>4.1.6.RELEASE</version>
+			<artifactId>spring-test</artifactId>
+			<version>${org.springframework-version}</version>
 		</dependency>
+
+
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.6</version>
+		</dependency>
+
 
 
 	</dependencies>

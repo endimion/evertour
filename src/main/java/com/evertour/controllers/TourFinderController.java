@@ -3,6 +3,7 @@ package com.evertour.controllers;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,7 +18,7 @@ import com.evertour.model.DMO.TourCategoryTO;
 import com.evertour.model.DMO.TourTO;
 import com.evertour.services.GuideReviewService;
 import com.evertour.services.TestTourService;
-import com.evertour.services.TourCategoryService;
+import com.evertour.services.impl.TourCategoryService;
 
 
 
@@ -36,11 +37,11 @@ public class TourFinderController {
 	private TestTourService testTourService;
 	
 	
-//	//@Inject
-//	public TourFinderController(TestTourService tourService){
-//		System.out.println("tour finder controller bean created!");
-//		this.testTourService = testTourService;
-//	}
+	@Inject
+	public TourFinderController(TestTourService tourService){
+		System.out.println("tour finder controller bean created!");
+		//this.testTourService = testTourService;
+	}
 	
 	@RequestMapping(value="/find/tours/all", method = RequestMethod.GET)
 	public @ResponseBody List<TourTO> getAllToursJSON(Map<String, Object> model){

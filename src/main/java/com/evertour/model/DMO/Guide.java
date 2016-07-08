@@ -36,6 +36,12 @@ public class Guide {
 	@Column(name = "PICTURE")
 	private String picture;
 	
+	@Column(name ="USERNAME")
+	private String userName;
+	
+	@Column(name="PASS")
+	private String password;
+	
 	
 	public Guide(){	}
 
@@ -107,6 +113,26 @@ public class Guide {
 
 	public void setPicture(String picture) {
 		this.picture = picture;
+	}
+
+
+	public String getUserName() {
+		return userName;
+	}
+
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 

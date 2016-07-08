@@ -98,3 +98,15 @@ join Evertour.GUIDES g on gt.GUIDE_ID = g.ID
 where t.ID=2;
 
 
+alter table GUIDES add column USERNAME varchar(250);
+alter table GUIDES add column PASS varchar(250);
+
+
+create table USERS(
+	ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    GNAME VARCHAR(32),
+    TYPE_ID tinyint, #boolean true licenced, false local
+    ADDRESS VARCHAR(32),
+    LAT double , # the following two denote the guides current address 
+    LNG double 
+);
