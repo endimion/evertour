@@ -129,7 +129,10 @@
 								type="text" class="form-control" id="reg_fullname"
 								name="reg_fullname" placeholder="full name">
 						</div>
-
+						<div class="form-group login-group-checkbox">
+								<input type="checkbox" id="lg_user" name="user">
+								<label for="lg_user">Simple User</label>
+						</div>
 						<div class="form-group login-group-checkbox">
 							<input type="checkbox" class="" id="reg_agree" name="reg_agree">
 							<label for="reg_agree">i agree with <a href="#">terms</a></label>

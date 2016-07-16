@@ -82,11 +82,13 @@
 
 	<div class="container-fluid" id="main">
 		<div class="row">
-			<div class="col-xs-4 col-md-4" id="left">
-				<div class="logo"> 
-					<img src="${logo}" /> 
+
+
+			<div class="col-xs-12 col-sm-3 col-md-3" id="left">
+				<div class="logo">
+					<img src="${logo}" />
 				</div>
-				
+
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -106,7 +108,8 @@
 				</div>
 
 				<c:if test="${not empty tourCategories}">
-					<div class="btn-group btn-input clearfix" id="tourCategoriesDropDown">
+					<div class="btn-group btn-input clearfix"
+						id="tourCategoriesDropDown">
 						<button type="button"
 							class="btn btn-primary dropdown-toggle form-control"
 							data-toggle="dropdown">
@@ -126,7 +129,44 @@
 
 
 			</div>
-			<div class="col-xs-8 col-md-8">
+			<div class="container col-xs-12 col-sm-5 col-md-5" id="right">
+				<div class="row">
+					<h2>Tours Near By</h2>
+					<div class="list-group tour-list">
+						<c:forEach var="tour" items="${allTours}">
+							<div class="tour-list-wrapper">
+								<a href="#" class="list-group-item ">
+									<h4 class="list-group-item-heading">${tour.name}</h4> <input
+									id="tourId" type="hidden" value="${tour.id}" />
+									<p class="list-group-item-text">
+									<div class="container">
+										<div class="col-xs-4 col-md-4" id="tour-left">
+											<div>pic url</div>
+											<div>${tour.description}</div>
+										</div>
+										<div class="col-xs-8 col-md-8" id="tour-right">
+											<div>${tour.address}</div>
+											<div>${tour.category.name}</div>
+											<button type="button" class="btn btn-primary">Details</button>
+										</div>
+
+
+									</div>
+									</p>
+								</a>
+
+							</div>
+						</c:forEach>
+
+
+					</div>
+				</div>
+				<!--  end of row -->
+			</div>
+			<!--  end of container -->
+			<!--  end of display tours in list -->
+
+			<div class="col-xs-12 col-md-4 col-sm-4 ">
 				<!--map-canvas will be postioned here-->
 			</div>
 
@@ -156,6 +196,9 @@
 	<spring:url value="/resources/js/BootstrapDropdownscript.js"
 		var="dropdown" />
 	<script type="text/javascript" src="${dropdown}"></script>
+
+	<spring:url value="/resources/js/tourList.js" var="toursList" />
+	<script type="text/javascript" src="${toursList}"></script>
 	<!--  <script src="js/scripts.js"></script> -->
 
 </body>

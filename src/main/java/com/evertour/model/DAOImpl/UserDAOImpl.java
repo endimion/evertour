@@ -26,15 +26,15 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public User getUserByName(String name) {
+	public User getUserByUserName(String name) {
 		Criteria criteria = getCurrentSession().createCriteria(User.class)
-				.add(Restrictions.eq("name", name));
+				.add(Restrictions.eq("userName", name));
 		return (User) criteria.uniqueResult();
 	}
 
 	@Override
-	public void saveUser(User user) {
-		getCurrentSession().save(user);
+	public long saveUser(User user) {
+		return (Long)getCurrentSession().save(user);
 	}
 
 

@@ -23,13 +23,13 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User getUserByName(String name) {
-		return userDAO.getUserByName(name);
+	public User getUserByUserName(String name) {
+		return userDAO.getUserByUserName(name);
 	}
 
 	@Override
-	public void saveUser(User user) {
-		userDAO.saveUser(user);
+	public long saveUser(User user) {
+		return userDAO.saveUser(user);
 	}
 
 	@Override

@@ -24,8 +24,6 @@ public class User {
 	@Column(name = "ADDRESS")
 	private String address;
 	
-	@Column(name = "TYPE_ID")
-	private boolean type;
 	
 	@Column(name = "LAT")
 	private double lat;
@@ -73,15 +71,6 @@ public class User {
 		this.address = address;
 	}
 
-
-	public boolean isType() {
-		return type;
-	}
-
-
-	public void setType(boolean type) {
-		this.type = type;
-	}
 
 
 	public double getLat() {

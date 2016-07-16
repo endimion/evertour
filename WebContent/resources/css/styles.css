@@ -55,7 +55,7 @@ body{
 
 
 #map-canvas {
-	width:65%;
+	width:30%;
     height:calc(100% - 0);
     position:absolute;
     right:16px;

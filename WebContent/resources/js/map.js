@@ -142,6 +142,9 @@ function initMap() {
 
 //THIS IS A GLOBAL VARIABLE  THAT STORE ALL THE MARKERS ON THE MAP
 var markers = [];
+var tours  = []; //another global variable to store the tour ids
+				 // this is used to "match" the id of a tour with the position 
+				 //	in the markers array
 
 
 /**
@@ -164,6 +167,7 @@ function putMarkersOnMap(text) {
 			title : response[i].name
 		});
 		markers[i] = marker
+		tours[i] = response[i].id;
 	}// end of for
 
 	for (i = 0; i < markers.length; i++) {
@@ -195,3 +199,9 @@ function getAllTours() {
 function CategorySelectionChanged(catId){
 	window.location.href = "filterToursByCategory/?catId="+catId;
 }
+
+
+//put markers on the map once the window is loaded!!!
+window.onload  = function(e){
+	getAllTours();
+}//end of window.onload
